@@ -1,10 +1,14 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
+#include <string>
+
 
 using std::cout;
 using std::endl;
 using std::ifstream;
+using std::string;
+using std::getline;
 
 int main (int argc, char** argv){
 	
@@ -19,8 +23,12 @@ int main (int argc, char** argv){
 		ifstream file (argv[1]);
 		if (!file.is_open())
 			cout << "could not open file" << endl;
-		else
+		else{
 			cout << "the file is open" << endl;
+			string x;
+			while (getline(file, x))
+				cout << x << endl;
+		}
 	}	
 	return 0;
 
