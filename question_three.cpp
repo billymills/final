@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <string>
+#include <map>
 
 
 using std::cout;
@@ -9,6 +10,7 @@ using std::endl;
 using std::ifstream;
 using std::string;
 using std::getline;
+using std::map;
 
 int main (int argc, char** argv){
 	
@@ -21,13 +23,16 @@ int main (int argc, char** argv){
 		cout << "threshold: " << argv[2] << endl; //threshold
 
 		ifstream file (argv[1]);
-		if (!file.is_open())
+		if (!file.is_open()){
 			cout << "could not open file" << endl;
+		}
 		else{
 			cout << "the file is open" << endl;
 			string x;
-			while (getline(file, x))
+			while (getline(file, x)){
 				cout << x << endl;
+				//insert entry into map
+			}
 		}
 	}	
 	return 0;
