@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-//#include "Entry.h"
+#include "Entry.h"
 
 using std::cout;
 using std::endl;
@@ -15,7 +15,7 @@ using std::map;
 using std::pair;
 
 int main (int argc, char** argv){
-	map <string, int> santasList;
+	map <string, Entry> santasList;
 	//three arguments are needed executable, filename, threshold
 	if (argc != 3){	
 		cout << "Usage: list [filename] [threshold]" << endl;
@@ -31,16 +31,19 @@ int main (int argc, char** argv){
 		else{
 			cout << "the file is open" << endl;
 			string x;
+			int i = 0;
 			while (getline(file, x)){
 				cout << x << endl;
-				int i = 0;
 				//insert entry into map
-				//santasList.insert(pair<int, Entry>(i, Entry(i, x, 1)));
-				santasList.insert(pair<string, int>(x, i));
+				santasList.insert(pair<string, Entry>(x, Entry(i, x, 1)));
+				//santasList.insert(pair<string, int>(x, i));
+				++i;
 			}
 		}
-		cout << santasList.count("merry") << endl;
-	}	
+	}
+	cout << santasList.size() << endl;	
+	//cout << santasList.count("merry") << endl;
+	//cout << santasList["merry"] << endl;
 	return 0;
 
 }

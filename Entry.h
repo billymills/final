@@ -13,6 +13,7 @@ class Entry{
 	public:
 		Entry(int k, string v, int c);
 		int getCount();
+		void setCount(int c);
 };
 
 #endif
