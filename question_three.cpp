@@ -47,12 +47,14 @@ int main (int argc, char** argv){
 			}
 		}
 	}
-	if (santasList.count("merry") > 0){
-		cout << "not empty" << endl;
+
+	//print out the nice people first (those above threshold)
+	//iterate through list
+	map <string, int>::iterator it;
+	for (it = santasList.begin(); it != santasList.end(); ++it){
+		cout << (*it).second << endl;
 	}
-	//cout << santasList.size() << endl;	
-	//cout << santasList.count("merry") << endl;
-	cout << santasList["merry"] << endl;
+	//print out the naughty people next (below threshhold)
 	return 0;
 
 }
