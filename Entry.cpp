@@ -3,10 +3,10 @@
 
 #include "Entry.h"
 
-Entry::Entry(int k, string v, int c){
+Entry::Entry(string k){
 	key = k;
-	value = v;
-	count = c;
+	//value = v;
+	int count = 1;
 }
 
 int Entry::getCount(){

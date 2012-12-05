@@ -7,11 +7,11 @@ using std::string;
 
 class Entry{
 	private:
-		int key;
-		string value;
+		string key;
+		//string value;
 		int count;
 	public:
-		Entry(int k, string v, int c);
+		Entry(string);
 		int getCount();
 		void setCount(int c);
 };
