@@ -15,7 +15,9 @@ using std::map;
 using std::pair;
 
 int main (int argc, char** argv){
+
 	map <string, int> santasList;
+
 	//three arguments are needed executable, filename, threshold
 	if (argc != 3){	
 		cout << "Usage: list [filename] [threshold]" << endl;
@@ -31,11 +33,8 @@ int main (int argc, char** argv){
 		else{
 			cout << "the file is open" << endl;
 			string x;
-			//int i = 0;
-			while (getline(file, x)){
-				cout << x << endl;
-				//insert entry into map
-				//santasList.insert(pair<string, Entry>(x, Entry(x)));
+			
+		while (getline(file, x)){
 
 				if (santasList.count(x) == 0){
 					santasList.insert(pair<string, int>(x, 1));
@@ -43,18 +42,27 @@ int main (int argc, char** argv){
 				else {
 					santasList.insert(pair<string, int>(x,++santasList[x]));
 				}
-				//++i;
 			}
 		}
 	}
 
 	//print out the nice people first (those above threshold)
-	//iterate through list
+	cout << "The Nice List: " << endl;
+	//int threshold = atoi(argv[2]);
 	map <string, int>::iterator it;
 	for (it = santasList.begin(); it != santasList.end(); ++it){
-		cout << (*it).second << endl;
+		if (it->second >= atoi(argv[2])){
+			cout << it->first << endl;
+		}
 	}
-	//print out the naughty people next (below threshhold)
-	return 0;
 
+	//print out the naughty people next (below threshhold)
+	cout << "The Naughty List: " << endl;
+	for (it = santasList.begin(); it != santasList.end(); ++it){
+		if (it->second < atoi(argv[2])){
+			cout << it->first << endl;
+		}
+	}
+
+	return 0;
 }
