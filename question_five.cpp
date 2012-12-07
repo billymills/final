@@ -14,6 +14,7 @@ using std::ofstream;
 using std::string;
 using std::getline;
 using std::map;
+using std::multimap;
 using std::pair;
 using std::istringstream;
 
@@ -21,6 +22,7 @@ using std::istringstream;
 int main (){
 	map <string, int> tweetMap;
 	int wordCount = 0;
+	ofstream rankedList;
 
 	ifstream tweets;
 	tweets.open ("nice.dat");
@@ -58,30 +60,24 @@ int main (){
 	}
 	cout << wordCount << endl;
 	cout << "uniques: " << tweetMap.size() << endl;
+	
 
-/*
+	//insert list into another structure for ranking
+	multimap <int, string> flip;
 
-	//print out the nice people first (those above threshold)
-	cout << "The Nice List: " << endl;
-	//int threshold = atoi(argv[2]);
 	map <string, int>::iterator it;
-	for (it = santasList.begin(); it != santasList.end(); ++it){
-		if (it->second >= atoi(argv[2])){
-			cout << it->first << endl;
-		}
+	for (it = tweetMap.begin(); it != tweetMap.end(); ++it){
+		flip.insert(pair<int, string>(it->second, it->first));
+	}
+	cout << flip.size() << endl;
+	//output ranked list to file
+	multimap <int, string>::reverse_iterator rit;
+	rankedList.open ("rankedList");
+	for (rit = flip.rbegin(); rit != flip.rend(); ++rit){
+		rankedList << rit->second << "   " << rit->first << endl;
 	}
 
-	//print out the naughty people next (below threshhold)
-	cout << "The Naughty List: " << endl;
-	for (it = santasList.begin(); it != santasList.end(); ++it){
-		if (it->second < atoi(argv[2])){
-			cout << it->first << endl;
-		}
-	}
-*/
-	ofstream output;
-	output.open ("output.txt");
-	output << "hello" << endl;
-	output.close();
+	rankedList.close();
+
 	return 0;
 }
