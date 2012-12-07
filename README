@@ -7,3 +7,4 @@ then ./naughty [filename] [threshold] to run
 Question #5
 run 'make tweet_parse' to build tweet parser
 then ./tweet_parse to run
+lexical_analysis and ranked_list files will be created

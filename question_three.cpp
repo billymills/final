@@ -4,8 +4,6 @@
 #include <string>
 #include <map>
 
-#include "Entry.h"
-
 using std::cout;
 using std::endl;
 using std::ifstream;
@@ -21,6 +19,7 @@ int main (int argc, char** argv){
 	//three arguments are needed executable, filename, threshold
 	if (argc != 3){	
 		cout << "Usage: list [filename] [threshold]" << endl;
+		return 0;
 	}
 	else {
 		cout << "filename: " << argv[1] << endl;  //name of file
@@ -48,7 +47,7 @@ int main (int argc, char** argv){
 
 	//print out the nice people first (those above threshold)
 	cout << "The Nice List: " << endl;
-	//int threshold = atoi(argv[2]);
+	
 	map <string, int>::iterator it;
 	for (it = santasList.begin(); it != santasList.end(); ++it){
 		if (it->second >= atoi(argv[2])){
@@ -58,6 +57,7 @@ int main (int argc, char** argv){
 
 	//print out the naughty people next (below threshhold)
 	cout << "The Naughty List: " << endl;
+	
 	for (it = santasList.begin(); it != santasList.end(); ++it){
 		if (it->second < atoi(argv[2])){
 			cout << it->first << endl;
