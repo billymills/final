@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <sstream>
+#include <ctype.h>
 
 #include "Entry.h"
 
@@ -14,8 +16,11 @@ using std::string;
 using std::getline;
 using std::map;
 using std::pair;
+using std::istringstream;
+
 
 int main (){
+	map <string, int> santasList;
 
 	ifstream tweets;
 	tweets.open ("tweets");
@@ -27,7 +32,19 @@ int main (){
 		string x;
 			
 		while (getline(tweets, x)){
-			cout << x << endl;
+			//cout << x << endl;
+			istringstream myString(x);
+			while (myString){
+				string word;
+				myString >> word;
+				if (word != ""){
+					//convert words to lower case
+					for(int i = 0; word[i] != '\0'; i++){
+						word[i] = tolower(word[i]);
+					}
+					cout << word << endl;
+				}
+			}
 			/*
 			if (santasList.count(x) == 0){
 				santasList.insert(pair<string, int>(x, 1));
@@ -39,7 +56,6 @@ int main (){
 		}
 	}
 
-	map <string, int> santasList;
 /*
 	//three arguments are needed executable, filename, threshold
 	if (argc != 3){	
