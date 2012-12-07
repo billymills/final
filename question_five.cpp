@@ -24,6 +24,19 @@ int main (){
 	}
 	else {
 		cout << "the file is open" << endl;
+		string x;
+			
+		while (getline(tweets, x)){
+			cout << x << endl;
+			/*
+			if (santasList.count(x) == 0){
+				santasList.insert(pair<string, int>(x, 1));
+			}
+			else {
+				santasList.insert(pair<string, int>(x,++santasList[x]));
+			}
+			*/
+		}
 	}
 
 	map <string, int> santasList;
@@ -44,7 +57,7 @@ int main (){
 			cout << "the file is open" << endl;
 			string x;
 			
-		while (getline(file, x)){
+			while (getline(file, x)){
 
 				if (santasList.count(x) == 0){
 					santasList.insert(pair<string, int>(x, 1));
