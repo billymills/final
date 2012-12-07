@@ -11,6 +11,7 @@ Entry.o: Entry.h Entry.cpp
 	$(CC) $(CFLAGS) -c Entry.cpp
 
 clean:
+	rm -f output.txt
 	rm -f naughty_test
 	rm -f tweet_test
 	rm -f *.o

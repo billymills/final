@@ -9,6 +9,7 @@
 using std::cout;
 using std::endl;
 using std::ifstream;
+using std::ofstream;
 using std::string;
 using std::getline;
 using std::map;
@@ -73,5 +74,9 @@ int main (){
 		}
 	}
 */
+	ofstream output;
+	output.open ("output.txt");
+	output << "hello" << endl;
+	output.close();
 	return 0;
 }
