@@ -6,7 +6,6 @@
 #include <sstream>
 #include <ctype.h>
 
-#include "Entry.h"
 
 using std::cout;
 using std::endl;
@@ -20,7 +19,7 @@ using std::istringstream;
 
 
 int main (){
-	map <string, int> santasList;
+	map <string, int> tweetMap;
 
 	ifstream tweets;
 	tweets.open ("tweets");
@@ -30,9 +29,10 @@ int main (){
 	else {
 		cout << "the file is open" << endl;
 		string x;
-			
+
 		while (getline(tweets, x)){
 			//cout << x << endl;
+			
 			istringstream myString(x);
 			while (myString){
 				string word;
@@ -42,48 +42,24 @@ int main (){
 					for(int i = 0; word[i] != '\0'; i++){
 						word[i] = tolower(word[i]);
 					}
-					cout << word << endl;
+					if (tweetMap.count(word) == 0){
+						cout << word << endl;
+						tweetMap.insert(pair<string, int>(word, 1));
+					}
+					else {
+						tweetMap.insert(pair<string, int>(word,++tweetMap[word]));
+						cout << word << endl;
+					}
 				}
 			}
-			/*
-			if (santasList.count(x) == 0){
-				santasList.insert(pair<string, int>(x, 1));
-			}
-			else {
-				santasList.insert(pair<string, int>(x,++santasList[x]));
-			}
-			*/
 		}
+				
+		
+		
 	}
+	cout << tweetMap["up"] << endl;
 
 /*
-	//three arguments are needed executable, filename, threshold
-	if (argc != 3){	
-		cout << "Usage: list [filename] [threshold]" << endl;
-	}
-	else {
-		cout << "filename: " << argv[1] << endl;  //name of file
-		cout << "threshold: " << argv[2] << endl; //threshold
-
-		ifstream file (argv[1]);
-		if (!file.is_open()){
-			cout << "could not open file" << endl;
-		}
-		else{
-			cout << "the file is open" << endl;
-			string x;
-			
-			while (getline(file, x)){
-
-				if (santasList.count(x) == 0){
-					santasList.insert(pair<string, int>(x, 1));
-				}
-				else {
-					santasList.insert(pair<string, int>(x,++santasList[x]));
-				}
-			}
-		}
-	}
 
 	//print out the nice people first (those above threshold)
 	cout << "The Nice List: " << endl;
