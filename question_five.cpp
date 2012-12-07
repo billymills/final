@@ -20,9 +20,10 @@ using std::istringstream;
 
 int main (){
 	map <string, int> tweetMap;
+	int wordCount = 0;
 
 	ifstream tweets;
-	tweets.open ("tweets");
+	tweets.open ("nice.dat");
 	if (!tweets.is_open()){
 		cout << "could not open file!" << endl;
 	}
@@ -31,24 +32,22 @@ int main (){
 		string x;
 
 		while (getline(tweets, x)){
-			//cout << x << endl;
 			
 			istringstream myString(x);
 			while (myString){
 				string word;
 				myString >> word;
 				if (word != ""){
+					++wordCount;
 					//convert words to lower case
 					for(int i = 0; word[i] != '\0'; i++){
 						word[i] = tolower(word[i]);
 					}
 					if (tweetMap.count(word) == 0){
-						cout << word << endl;
 						tweetMap.insert(pair<string, int>(word, 1));
 					}
 					else {
 						tweetMap.insert(pair<string, int>(word,++tweetMap[word]));
-						cout << word << endl;
 					}
 				}
 			}
@@ -57,7 +56,8 @@ int main (){
 		
 		
 	}
-	cout << tweetMap["up"] << endl;
+	cout << wordCount << endl;
+	cout << "uniques: " << tweetMap.size() << endl;
 
 /*
 
