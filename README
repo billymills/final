@@ -1,0 +1,9 @@
+CSCI 333 FINAL EXAM PROGRAMMING PROBLEMS
+
+Question #3
+run 'make naughty' to build the naughty/nice program
+then ./naughty [filename] [threshold] to run
+
+Question #5
+run 'make tweet_parse' to build tweet parser
+then ./tweet_parse to run
